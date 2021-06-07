@@ -23,10 +23,6 @@ module "eks" {
   vpc_id          = var.vpc_id
   enable_irsa     = false
 
-  tags = {
-    Project = var.project
-  }
-
   workers_additional_policies = [
     "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
     "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess",
@@ -47,5 +43,4 @@ module "eks" {
   tags = {
     Project = var.project
   }
-
 }
