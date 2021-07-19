@@ -16,7 +16,7 @@ terraform {
 
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
-  version         = "v15.2.0"
+  version         = "v16.2.0"
   cluster_version = var.cluster_version
   cluster_name    = var.cluster_name
   kubeconfig_name = var.cluster_name
