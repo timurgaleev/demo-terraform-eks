@@ -22,12 +22,12 @@ resource "helm_release" "hpa_operator" {
 }
 
 locals {
-  hpa_chart_repository      = "https://kubernetes-charts.banzaicloud.com"
-  hpa_name                  = "hpa-operator"
-  hpa_chart                 = "hpa-operator"
-  metrics_chart_repository  = "https://charts.bitnami.com/bitnami"
-  metrics_name              = "metrics-server"
-  metrics_chart             = "metrics-server"
+  hpa_chart_repository     = "https://kubernetes-charts.banzaicloud.com"
+  hpa_name                 = "hpa-operator"
+  hpa_chart                = "hpa-operator"
+  metrics_chart_repository = "https://charts.bitnami.com/bitnami"
+  metrics_name             = "metrics-server"
+  metrics_chart            = "metrics-server"
 
   hpa_conf = merge(local.hpa_conf_defaults, var.hpa_conf)
   hpa_conf_defaults = {
