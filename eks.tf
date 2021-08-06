@@ -10,6 +10,8 @@ terraform {
       source  = "hashicorp/local"
       version = "2.1.0"
     }
+    helm       = ">= 1.0"
+    kubernetes = ">= 1.11"
   }
   required_version = ">= 0.14"
 }

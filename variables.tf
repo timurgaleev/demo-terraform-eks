@@ -214,3 +214,58 @@ variable "on_demand_cpu_asg_recreate_on_change" {
   description = "Recreate the autoscaling group when the Launch Template or Launch Configuration change."
   default     = "true"
 }
+
+######################################### Autoscaling
+variable "module_depends_on" {
+  default     = []
+  type        = list(any)
+  description = "A list of explicit dependencies"
+}
+
+variable "cluster_autoscaler_conf" {
+  default     = {}
+  description = "A set of parameters to pass to Cluster Autoscaler Helm chart (see: https://github.com/kubernetes/autoscaler)"
+}
+
+variable "hpa_conf" {
+  default     = {}
+  description = "A set of parameters to pass to Horizontal Pod Autoscaler Helm chart (see: https://github.com/banzaicloud/hpa-operator)"
+}
+
+variable "namespace" {
+  type        = string
+  default     = "kube-system"
+  description = "A name of the existing namespace"
+}
+
+variable "namespace_name" {
+  type        = string
+  default     = "scaling"
+  description = "A name of namespace for creating"
+}
+
+variable "cluster_name" {
+  type        = string
+  default     = null
+  description = "A name of the Amazon EKS cluster"
+}
+
+variable "hpa_enabled" {
+  default     = true
+  description = "Whether to deploy Horizontal Pod Autoscaler chart"
+}
+
+variable "cluster_autoscaler_enabled" {
+  default     = true
+  description = "Whether to deploy Cluster Autoscaler chart"
+}
+
+variable "cluster_autoscaler_chart_version" {
+  default     = "7.2.2"
+  description = "Version of Cluster Autoscaler chart"
+}
+
+variable "hpa_chart_version" {
+  default     = "0.4.0"
+  description = "Version of Horizontal Pod Autoscaler chart"
+}
