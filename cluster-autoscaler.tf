@@ -73,7 +73,7 @@ resource "helm_release" "cluster_autoscaler" {
 
   count = var.cluster_autoscaler_enabled
 
-  name  = local.cluster_autoscaler_name
+  name = local.cluster_autoscaler_name
 
   repository = local.cluster_autoscaler_chart_repository
   chart      = local.cluster_autoscaler_chart
@@ -96,7 +96,8 @@ locals {
   cluster_autoscaler_name             = "aws-cluster-autoscaler"
   cluster_autoscaler_chart            = "cluster-autoscaler"
   cluster_autoscaler_conf             = merge(local.cluster_autoscaler_conf_defaults, var.cluster_autoscaler_conf)
-  cluster_autoscaler_conf_defaults    = {
+
+  cluster_autoscaler_conf_defaults  = {
     "cloudProvider"                                                 = "aws"
     "image.repository"                                              = "us.gcr.io/k8s-artifacts-prod/autoscaling/cluster-autoscaler"
     "image.tag"                                                     = "v1.16.6" # Make sure it matches the version of the cluster
