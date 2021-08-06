@@ -71,7 +71,7 @@ resource "helm_release" "cluster_autoscaler" {
     var.module_depends_on
   ]
 
-  count = var.cluster_autoscaler_enabled
+  count = var.cluster_autoscaler_enabled ? 1 : 0
 
   name = local.cluster_autoscaler_name
 

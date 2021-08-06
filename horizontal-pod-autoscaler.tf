@@ -4,7 +4,7 @@ resource "helm_release" "hpa_operator" {
   depends_on = [
     var.module_depends_on
   ]
-  count      = var.hpa_enabled
+  count      = var.hpa_enabled ? 1 : 0
   name       = local.hpa_name
   repository = local.hpa_chart_repository
   chart      = local.hpa_chart
