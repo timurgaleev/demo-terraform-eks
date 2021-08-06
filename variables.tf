@@ -244,12 +244,6 @@ variable "namespace_name" {
   description = "A name of namespace for creating"
 }
 
-variable "cluster_name" {
-  type        = string
-  default     = null
-  description = "A name of the Amazon EKS cluster"
-}
-
 variable "hpa_enabled" {
   default     = true
   description = "Whether to deploy Horizontal Pod Autoscaler chart"
