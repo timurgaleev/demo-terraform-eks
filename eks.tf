@@ -4,7 +4,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "3.42"
+      version = ">= 3.53.0"
     }
     local = {
       source  = "hashicorp/local"
@@ -16,7 +16,7 @@ terraform {
 
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
-  version         = "v16.2.0"
+  version         = "v17.1.0"
   cluster_version = var.cluster_version
   cluster_name    = var.cluster_name
   kubeconfig_name = var.cluster_name
@@ -37,6 +37,7 @@ module "eks" {
 
   workers_group_defaults = {
     additional_userdata = "sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm && sudo systemctl enable amazon-ssm-agent && sudo systemctl start amazon-ssm-agent"
+    bootstrap_extra_args = "--docker-config-json ${local.docker_config_json}"
   }
 
   worker_groups_launch_template = concat(local.common, local.cpu, local.gpu)

@@ -24,6 +24,12 @@ variable "cluster_version" {
   default     = "1.20"
 }
 
+variable "domains" {
+  type        = list(string)
+  default     = []
+  description = "A list of domains for ingresses"
+}
+
 variable "vpc_id" {
   type        = string
   default     = null
@@ -102,7 +108,7 @@ variable "on_demand_common_percentage_above_base_capacity" {
 
 variable "on_demand_common_asg_recreate_on_change" {
   description = "Recreate the autoscaling group when the Launch Template or Launch Configuration change."
-  default     = "false"
+  default     = "true"
 }
 
 ############################################ On-demand GPU instance
@@ -156,7 +162,7 @@ variable "on_demand_gpu_percentage_above_base_capacity" {
 
 variable "on_demand_gpu_asg_recreate_on_change" {
   description = "Recreate the autoscaling group when the Launch Template or Launch Configuration change."
-  default     = "false"
+  default     = "true"
 }
 
 ######################################### On-demand CPU instance
@@ -206,5 +212,5 @@ variable "on_demand_cpu_percentage_above_base_capacity" {
 
 variable "on_demand_cpu_asg_recreate_on_change" {
   description = "Recreate the autoscaling group when the Launch Template or Launch Configuration change."
-  default     = "false"
+  default     = "true"
 }
