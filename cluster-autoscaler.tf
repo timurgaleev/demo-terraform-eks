@@ -10,7 +10,7 @@ module "iam_assumable_role_admin" {
   oidc_fully_qualified_subjects = ["system:serviceaccount:${local.namespace}:aws-cluster-autoscaler"]
 
   tags = {
-    Project         = "${var.cluster_name}project"
+    Project = "${var.cluster_name}project"
   }
 }
 
@@ -71,16 +71,16 @@ resource "helm_release" "cluster_autoscaler" {
     var.module_depends_on
   ]
 
-  count      = var.cluster_autoscaler_enabled
+  count = var.cluster_autoscaler_enabled
 
-  name       = local.cluster_autoscaler_name
+  name  = local.cluster_autoscaler_name
 
   repository = local.cluster_autoscaler_chart_repository
   chart      = local.cluster_autoscaler_chart
   version    = var.cluster_autoscaler_chart_version
 
-  namespace  = local.namespace
-  timeout    = 1200
+  namespace = local.namespace
+  timeout   = 1200
   dynamic "set" {
     for_each = local.cluster_autoscaler_conf
 
@@ -95,8 +95,8 @@ locals {
   cluster_autoscaler_chart_repository = "https://charts.helm.sh/stable"
   cluster_autoscaler_name             = "aws-cluster-autoscaler"
   cluster_autoscaler_chart            = "cluster-autoscaler"
-  cluster_autoscaler_conf = merge(local.cluster_autoscaler_conf_defaults, var.cluster_autoscaler_conf)
-  cluster_autoscaler_conf_defaults = {
+  cluster_autoscaler_conf             = merge(local.cluster_autoscaler_conf_defaults, var.cluster_autoscaler_conf)
+  cluster_autoscaler_conf_defaults    = {
     "cloudProvider"                                                 = "aws"
     "image.repository"                                              = "us.gcr.io/k8s-artifacts-prod/autoscaling/cluster-autoscaler"
     "image.tag"                                                     = "v1.16.6" # Make sure it matches the version of the cluster
