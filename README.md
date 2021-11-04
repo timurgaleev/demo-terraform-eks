@@ -1,4 +1,4 @@
-# god-terraform-eks
+# demo-terraform-eks
 
 <!--- BEGIN_TF_DOCS --->
 ## Requirements
